@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HUN SAMNANG - CNY 2026 (Horse Year)</title>
+    <title>HUN SAMNANG - CNY 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Moul&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- STYLE --- */
+        /* --- STYLE (កុំកែត្រង់នេះ) --- */
         :root { --bg-dark: #09090b; --accent-primary: #f59e0b; --glass-bg: rgba(255, 255, 255, 0.03); --glass-border: rgba(255, 255, 255, 0.08); --text-main: #ffffff; --text-muted: rgba(255, 255, 255, 0.5); --card-radius: 24px; }
         body { font-family: 'Kantumruy Pro', sans-serif; background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; }
         .bg-noise { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E"); pointer-events: none; z-index: -1; }
@@ -42,7 +42,6 @@
 </head>
 <body class="min-h-screen flex items-center justify-center p-4">
 
-    <!-- Texture Overlay -->
     <div class="bg-noise"></div>
     <div class="bg-gradient-glow"></div>
     <div id="angpao-container"></div>
@@ -56,7 +55,9 @@
         </div>
         <div class="text-center space-y-4 px-6 relative z-10">
             <h1 class="text-xl text-white/70 font-bold tracking-wider">ចូលឆ្នាំចិនហើយ!</h1>
-            <h2 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600 font-['Moul'] leading-relaxed py-2 drop-shadow-sm">សុំអាំងប៉ាវមួយមក!</h2>
+            <h2 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600 font-['Moul'] leading-relaxed py-2 drop-shadow-sm">
+                សុំអាំងប៉ាវមួយមក!
+            </h2>
             <div class="mt-8 inline-block px-5 py-2 rounded-full bg-white/10 border border-white/10 backdrop-blur-md shadow-[0_0_20px_rgba(255,255,255,0.1)]">
                 <p class="text-white/60 text-xs tracking-[0.2em] uppercase animate-pulse font-semibold">Tap to Give Angpao</p>
             </div>
@@ -66,30 +67,28 @@
     <!-- MAIN APP CONTAINER -->
     <div id="main-content" class="w-full max-w-sm relative z-10 transition-all duration-1000 opacity-0 blur-sm">
         <div class="premium-glass p-1">
-            <!-- PROFILE HEADER -->
+            <!-- PROFILE -->
             <div class="relative pt-8 pb-6 px-6 text-center border-b border-white/5">
                 <div class="relative inline-block">
                     <div class="absolute -inset-4 bg-gradient-to-tr from-yellow-500/40 to-red-600/40 rounded-full blur-xl opacity-70 animate-pulse"></div>
                     <div class="relative p-1 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full">
-                        <!-- Profile Image loads here -->
-                        <img id="user-profile-img" src="profile.png" 
-                             class="w-24 h-24 rounded-full object-cover border-4 border-[#09090b]" 
-                             onerror="this.src='https://ui-avatars.com/api/?name=Hun+Samnang&background=18181b&color=fbbf24&size=256&bold=true'">
+                        <img id="user-profile" src="" 
+                             onerror="this.src='https://ui-avatars.com/api/?name=No+Image&background=18181b&color=fbbf24'"
+                             class="w-24 h-24 rounded-full object-cover border-4 border-[#09090b]">
                     </div>
                     <div class="absolute bottom-0 right-0 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full border-2 border-[#09090b] shadow-lg flex items-center gap-1">
-                        <!-- Updated to Horse Icon -->
                         <i class="fa-solid fa-horse text-yellow-300"></i> 2026
                     </div>
                 </div>
-                <h1 class="text-2xl font-bold mt-4 text-gradient-gold font-['Moul'] tracking-wide">HUN SAMNANG</h1>
-                <p class="text-[11px] text-white/40 uppercase tracking-[0.2em] mt-1 font-semibold">Gong Xi Fa Cai</p>
+                <h1 id="user-name" class="text-2xl font-bold mt-4 text-gradient-gold font-['Moul'] tracking-wide">...</h1>
+                <p class="text-[11px] text-white/40 uppercase tracking-[0.2em] mt-1 font-semibold">Year of the Horse</p>
             </div>
 
-            <!-- BANKING BODY -->
+            <!-- BANKING -->
             <div class="p-4 space-y-5">
                 <div class="grid grid-cols-2 gap-2 p-1 bg-black/20 rounded-[20px] backdrop-blur-sm">
-                    <button onclick="updateBank('aba')" id="tab-aba" class="nav-pill py-3 text-sm font-bold flex items-center justify-center gap-2 active"><i class="fa-solid fa-building-columns text-xs"></i>ABA</button>
-                    <button onclick="updateBank('wing')" id="tab-wing" class="nav-pill py-3 text-sm font-bold flex items-center justify-center gap-2"><i class="fa-solid fa-plane-departure text-xs"></i>WING</button>
+                    <button onclick="updateBank('aba')" id="tab-aba" class="nav-pill py-3 text-sm font-bold flex items-center justify-center gap-2 active"><i class="fa-solid fa-building-columns text-xs"></i> ABA</button>
+                    <button onclick="updateBank('wing')" id="tab-wing" class="nav-pill py-3 text-sm font-bold flex items-center justify-center gap-2"><i class="fa-solid fa-plane-departure text-xs"></i> WING</button>
                 </div>
 
                 <div class="bg-white/5 rounded-2xl p-5 text-center border border-white/5 relative">
@@ -100,18 +99,15 @@
                     <div class="text-xs font-bold tracking-widest text-white/30 mb-4 uppercase flex justify-center items-center gap-2">
                         <span id="bank-label">ABA BANK</span>
                     </div>
-                    
-                    <!-- QR Display -->
                     <div class="flex justify-center mb-5">
                         <div class="qr-frame group cursor-pointer">
                             <div class="corner c-tl"></div><div class="corner c-tr"></div>
                             <div class="corner c-bl"></div><div class="corner c-br"></div>
-                            <!-- QR Image -->
-                            <img id="qr-image" src="" class="w-36 h-36 rounded-lg bg-white p-1 object-contain" onerror="this.src='https://placehold.co/300x300/black/white?text=No+QR+Image'">
+                            <img id="qr-image" src="" 
+                                 onerror="this.src='https://placehold.co/300x300/white/black?text=Image+Missing'"
+                                 class="w-36 h-36 rounded-lg bg-white p-1 object-contain">
                         </div>
                     </div>
-
-                    <!-- Number -->
                     <div onclick="copyNumber()" class="cursor-pointer group active:scale-95 transition-transform">
                         <div class="text-[10px] text-white/30 uppercase tracking-widest mb-1">Account Number</div>
                         <div class="flex items-center justify-center gap-2 bg-black/20 py-2 px-4 rounded-xl border border-white/5 group-hover:border-yellow-500/30 transition">
@@ -121,37 +117,55 @@
                     </div>
                 </div>
 
-                <a id="pay-btn" href="#" target="_blank" class="btn-primary btn-heartbeat flex items-center justify-center gap-2 py-4 text-sm w-full"><i class="fa-solid fa-bolt"></i><span id="btn-text">Pay Now</span></a>
+                <a id="pay-btn" href="#" target="_blank" class="btn-primary btn-heartbeat flex items-center justify-center gap-2 py-4 text-sm w-full">
+                    <i class="fa-solid fa-bolt"></i> <span id="btn-text">Pay Now</span>
+                </a>
 
                 <div class="flex justify-center gap-4 pt-2">
-                    <a href="https://www.facebook.com/samnanghunreal/" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:bg-[#1877F2] hover:text-white transition-all"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://t.me/hunsamnang" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:bg-[#229ED9] hover:text-white transition-all"><i class="fa-brands fa-telegram"></i></a>
-                    <a href="https://wa.me/qr/H35HQISESRRLB1" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:bg-[#25D366] hover:text-white transition-all"><i class="fa-brands fa-whatsapp"></i></a>
-                    <a href="https://u.wechat.com/kBVl6zaWxOSCqiHsDatJx7A?s=2" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:bg-[#09B83E] hover:text-white transition-all"><i class="fa-brands fa-weixin"></i></a>
+                    <a href="#" id="link-fb" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:bg-[#1877F2] hover:text-white transition-all"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" id="link-tg" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:bg-[#229ED9] hover:text-white transition-all"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="#" id="link-wa" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:bg-[#25D366] hover:text-white transition-all"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" id="link-wc" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:bg-[#09B83E] hover:text-white transition-all"><i class="fa-brands fa-weixin"></i></a>
                 </div>
             </div>
-            <div class="text-center pb-4"><p class="text-[10px] text-white/20 font-mono">DESIGNED FOR CNY 2026</p></div>
+            
+            <div class="text-center pb-4"><p class="text-[10px] text-white/20 font-mono">DESIGNED FOR CNY 2026 (HORSE)</p></div>
         </div>
     </div>
+
     <div id="toast" class="fixed top-6 left-1/2 -translate-x-1/2 bg-white/10 backdrop-blur-md border border-green-500/30 text-green-400 px-5 py-2.5 rounded-full shadow-2xl flex items-center gap-2 opacity-0 pointer-events-none transition-all duration-300 transform -translate-y-4 z-[110]">
         <i class="fa-solid fa-circle-check"></i> <span class="font-bold text-xs">Copied!</span>
     </div>
 
     <script>
+        // ==========================================
+        // ✍️ កន្លែងកែប្រែទិន្នន័យ (EDIT HERE)
+        // ==========================================
+        
+        const myName = "HUN SAMNANG"; 
+        const myProfileImage = "images/profile.jpg"; 
+
+        const myFacebook = "https://www.facebook.com/samnanghunreal/"; 
+        const myTelegram = "https://t.me/hunsamnang";
+        const myWhatsApp = "https://wa.me/qr/example"; // <--- ដាក់ Link WhatsApp
+        const myWeChat = "https://u.wechat.com/kBVl6zaWxOSCqiHsDatJx7A?s=2";
+
         const banks = {
             aba: {
-                name: "HUN SAMNANG",
-                usd: { number: "040 220 0030", qr: "aba.png" }, 
-                khr: { number: "040 220 0031", qr: "aba.png" }, 
+                usd: { number: "040 220 0030", qr: "images/aba_usd.jpg" },
+                khr: { number: "040 220 0031", qr: "images/aba_khr.jpg" },
                 link: "https://pay.ababank.com/oRF8/bjr6yndk"
             },
             wing: {
-                name: "HUN SAMNANG",
-                usd: { number: "103 158 094", qr: "wing.png" },
-                khr: { number: "103 158 094", qr: "wing.png" },
+                usd: { number: "103 158 094", qr: "images/wing.jpg" },
+                khr: { number: "103 158 094", qr: "images/wing.jpg" },
                 link: "https://wingmoney.app.link/FenLETPGC0b"
             }
         };
+
+        // ===============================================
+        // ហាមកែខាងក្រោមនេះ (System Logic)
+        // ===============================================
 
         let currentBank = 'aba';
         let currentCurrency = 'usd';
@@ -159,28 +173,40 @@
         function closeSplash() {
             const splash = document.getElementById('splash-screen');
             const main = document.getElementById('main-content');
-            splash.style.opacity = '0';
-            setTimeout(() => splash.style.display = 'none', 700);
-            main.classList.remove('opacity-0', 'blur-sm');
-            main.classList.add('fade-in-up');
+            if(splash) {
+                splash.style.opacity = '0';
+                setTimeout(() => splash.style.display = 'none', 700);
+            }
+            if(main) {
+                main.classList.remove('opacity-0', 'blur-sm');
+                main.classList.add('fade-in-up');
+            }
         }
+
         setTimeout(() => {
             const splash = document.getElementById('splash-screen');
-            if(splash.style.opacity !== '0') closeSplash();
-        }, 4000);
+            if(splash && splash.style.opacity !== '0') closeSplash();
+        }, 3500);
 
         function updateBank(bankKey) {
             currentBank = bankKey;
             document.querySelectorAll('.nav-pill').forEach(el => el.classList.remove('active'));
-            document.getElementById(`tab-${bankKey}`).classList.add('active');
-            document.getElementById('bank-label').innerText = bankKey.toUpperCase() + " BANK";
-            document.getElementById('btn-text').innerText = "Pay with " + bankKey.toUpperCase();
+            const activeTab = document.getElementById(`tab-${bankKey}`);
+            if(activeTab) activeTab.classList.add('active');
+            
+            const label = document.getElementById('bank-label');
+            const btnText = document.getElementById('btn-text');
+            if(label) label.innerText = bankKey.toUpperCase() + " BANK";
+            if(btnText) btnText.innerText = "Pay with " + bankKey.toUpperCase();
             
             const switcher = document.getElementById('currency-switcher');
-            switcher.style.opacity = bankKey === 'aba' ? '1' : '0';
-            switcher.style.pointerEvents = bankKey === 'aba' ? 'auto' : 'none';
+            if(switcher) {
+                switcher.style.opacity = bankKey === 'aba' ? '1' : '0';
+                switcher.style.pointerEvents = bankKey === 'aba' ? 'auto' : 'none';
+            }
             if (bankKey !== 'aba') currentCurrency = 'usd';
-            renderData();
+            
+            switchCurrency(currentCurrency); 
         }
 
         function switchCurrency(curr) {
@@ -189,44 +215,85 @@
             const btnKhr = document.getElementById('curr-khr');
             const activeClass = ['bg-white/10', 'text-white'];
             const inactiveClass = ['text-white/40'];
-            if(curr === 'usd') {
-                btnUsd.classList.add(...activeClass); btnUsd.classList.remove(...inactiveClass);
-                btnKhr.classList.remove(...activeClass); btnKhr.classList.add(...inactiveClass);
-            } else {
-                btnKhr.classList.add(...activeClass); btnKhr.classList.remove(...inactiveClass);
-                btnUsd.classList.remove(...activeClass); btnUsd.classList.add(...inactiveClass);
+
+            if(btnUsd && btnKhr) {
+                if(curr === 'usd') {
+                    btnUsd.classList.add(...activeClass); btnUsd.classList.remove(...inactiveClass);
+                    btnKhr.classList.remove(...activeClass); btnKhr.classList.add(...inactiveClass);
+                } else {
+                    btnKhr.classList.add(...activeClass); btnKhr.classList.remove(...inactiveClass);
+                    btnUsd.classList.remove(...activeClass); btnUsd.classList.add(...inactiveClass);
+                }
             }
             renderData();
         }
 
         function renderData() {
-            const data = banks[currentBank][currentCurrency];
-            document.getElementById('acc-number').innerText = data.number;
-            document.getElementById('pay-btn').href = banks[currentBank].link;
+            const elName = document.getElementById('user-name');
+            const elProfile = document.getElementById('user-profile');
+            const elFb = document.getElementById('link-fb');
+            const elTg = document.getElementById('link-tg');
+            const elWa = document.getElementById('link-wa'); // WhatsApp Element
+            const elWc = document.getElementById('link-wc');
+
+            if(elName) elName.innerText = myName;
             
-            const qrImg = document.getElementById('qr-image');
-            qrImg.src = data.qr;
+            if(elProfile) {
+                elProfile.src = myProfileImage;
+                elProfile.onerror = function() {
+                    console.log("Profile image not found at: " + this.src);
+                    this.src = "https://ui-avatars.com/api/?name=User&background=18181b&color=fbbf24";
+                };
+            }
+
+            if(elFb) elFb.href = myFacebook;
+            if(elTg) elTg.href = myTelegram;
+            if(elWa) elWa.href = myWhatsApp; // Set WhatsApp Link
+            if(elWc) elWc.href = myWeChat;
+
+            const bankInfo = banks[currentBank];
+            const currencyInfo = bankInfo[currentCurrency];
+            const elNum = document.getElementById('acc-number');
+            const elBtn = document.getElementById('pay-btn');
+            const elQr = document.getElementById('qr-image');
+
+            if(elNum) elNum.innerText = currencyInfo.number;
+            if(elBtn) elBtn.href = bankInfo.link;
+            if(elQr) {
+                elQr.src = currencyInfo.qr;
+                elQr.onerror = function() {
+                    console.log("QR image not found at: " + this.src);
+                    this.src = "https://placehold.co/300x300/white/black?text=Image+Missing";
+                };
+            }
         }
 
         function copyNumber() {
-            navigator.clipboard.writeText(document.getElementById('acc-number').innerText);
-            const toast = document.getElementById('toast');
-            toast.classList.remove('opacity-0', '-translate-y-4');
-            setTimeout(() => toast.classList.add('opacity-0', '-translate-y-4'), 2000);
+            const elNum = document.getElementById('acc-number');
+            if(elNum) {
+                navigator.clipboard.writeText(elNum.innerText);
+                const toast = document.getElementById('toast');
+                if(toast) {
+                    toast.classList.remove('opacity-0', '-translate-y-4');
+                    setTimeout(() => toast.classList.add('opacity-0', '-translate-y-4'), 2000);
+                }
+            }
         }
 
         window.onload = () => {
             updateBank('aba');
+            switchCurrency('usd');
             setInterval(() => {
                 const c = document.getElementById('angpao-container');
-                const e = document.createElement('div');
-                e.className = 'angpao';
-                // Updated falling emojis to include HORSE, not CAT
-                e.innerText = ['🧧','💰','✨', '🐴'][Math.floor(Math.random()*4)];
-                e.style.left = Math.random()*100+'vw';
-                e.style.animationDuration = (Math.random()*3+4)+'s';
-                c.appendChild(e);
-                setTimeout(()=>e.remove(),7000);
+                if(c) {
+                    const e = document.createElement('div');
+                    e.className = 'angpao';
+                    e.innerText = ['🧧','💰','✨', '🐴'][Math.floor(Math.random()*4)];
+                    e.style.left = Math.random()*100+'vw';
+                    e.style.animationDuration = (Math.random()*3+4)+'s';
+                    c.appendChild(e);
+                    setTimeout(()=>e.remove(),7000);
+                }
             }, 800);
         };
     </script>
