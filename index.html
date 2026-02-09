@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sok Dara - CNY Dark Glass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Kantumruy Pro', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background Gradient & Glow */
+        .bg-glow {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% -20%, #450a0a 0%, #000000 80%);
+            z-index: -2;
+        }
+        
+        /* Floating Orbs for Glass Effect */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.6;
+        }
+        .orb-1 { top: 10%; left: -10%; width: 300px; height: 300px; background: #7f1d1d; }
+        .orb-2 { bottom: 10%; right: -10%; width: 250px; height: 250px; background: #b45309; }
+
+        /* Dark Glassmorphism */
+        .glass {
+            background: rgba(20, 20, 20, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        /* Gold Text Gradient */
+        .text-gold {
+            background: linear-gradient(to right, #fcd34d, #f59e0b, #fcd34d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
+        /* Falling Angpao Animation */
+        .angpao {
+            position: fixed;
+            top: -50px;
+            font-size: 20px;
+            z-index: 0;
+            animation: fall linear forwards;
+            pointer-events: none; /* Click through */
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Bank Tab Active State */
+        .tab-active {
+            background: rgba(252, 211, 77, 0.15);
+            border: 1px solid rgba(252, 211, 77, 0.5);
+            color: #fcd34d;
+            box-shadow: 0 0 15px rgba(252, 211, 77, 0.1);
+        }
+
+        /* Smooth Transition */
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <!-- Background Elements -->
+    <div class="bg-glow"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    
+    <!-- Angpao Container (JS will inject here) -->
+    <div id="angpao-container"></div>
+
+    <div class="w-full max-w-md relative z-10 space-y-5">
+
+        <!-- Profile Card -->
+        <div class="glass rounded-3xl p-8 text-center border-t border-white/10">
+            <div class="relative inline-block mb-4">
+                <div class="absolute inset-0 bg-gradient-to-tr from-red-600 to-yellow-500 rounded-full blur opacity-50"></div>
+                <img src="https://ui-avatars.com/api/?name=Sok+Dara&background=000&color=fcd34d&size=200" 
+                     class="relative w-24 h-24 rounded-full border-2 border-yellow-500/50 p-1 object-cover">
+                <div class="absolute -bottom-2 -right-2 bg-red-600 text-yellow-300 text-xs w-8 h-8 flex items-center justify-center rounded-full border-2 border-black">
+                    <i class="fa-solid fa-dragon"></i>
+                </div>
+            </div>
+            
+            <h1 class="text-2xl mt-2 tracking-wide text-gold">សុខ ដារ៉ា</h1>
+            <p class="text-white/50 text-sm mt-1 font-light">Happy Chinese New Year 2026</p>
+
+            <!-- Social Icons -->
+            <div class="flex justify-center gap-4 mt-6">
+                <a href="#" class="w-10 h-10 rounded-full glass flex items-center justify-center text-white/70 hover:text-yellow-400 hover:bg-white/5 transition hover:scale-110">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full glass flex items-center justify-center text-white/70 hover:text-yellow-400 hover:bg-white/5 transition hover:scale-110">
+                    <i class="fa-brands fa-telegram"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full glass flex items-center justify-center text-white/70 hover:text-yellow-400 hover:bg-white/5 transition hover:scale-110">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Banking Glass Card -->
+        <div class="glass rounded-3xl p-1 overflow-hidden">
+            <!-- Custom Tabs -->
+            <div class="flex p-2 gap-2">
+                <button onclick="setBank('aba')" id="tab-aba" class="flex-1 py-3 rounded-xl text-sm font-bold transition-all text-white/40 hover:text-white tab-active">
+                    ABA
+                </button>
+                <button onclick="setBank('acleda')" id="tab-acleda" class="flex-1 py-3 rounded-xl text-sm font-bold transition-all text-white/40 hover:text-white">
+                    ACLEDA
+                </button>
+                <button onclick="setBank('wing')" id="tab-wing" class="flex-1 py-3 rounded-xl text-sm font-bold transition-all text-white/40 hover:text-white">
+                    WING
+                </button>
+            </div>
+
+            <!-- Content -->
+            <div class="p-6 pt-2">
+                <div id="bank-content" class="fade-in text-center">
+                    <p class="text-yellow-500/60 text-[10px] uppercase tracking-[0.2em] mb-2">Account Number</p>
+                    <h2 id="acc-num" class="text-3xl font-mono font-bold text-white drop-shadow-lg mb-6">001 555 666</h2>
+
+                    <!-- QR Frame -->
+                    <div class="relative inline-block group cursor-pointer">
+                        <div class="absolute inset-0 bg-gradient-to-br from-yellow-500 to-red-600 rounded-xl blur opacity-20 group-hover:opacity-40 transition"></div>
+                        <div class="relative bg-black/40 p-3 rounded-xl border border-white/10 backdrop-blur-sm">
+                            <img id="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=001555666&color=fcd34d&bgcolor=1a0505" class="w-40 h-40 rounded-lg">
+                            
+                            <!-- Small overlay icon -->
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                                <div class="bg-black/80 rounded-full p-3 backdrop-blur-md border border-yellow-500/50">
+                                    <i class="fa-solid fa-qrcode text-yellow-400 text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="grid grid-cols-2 gap-3 mt-6">
+                        <button onclick="copyAcc()" class="glass hover:bg-white/10 text-white/80 py-3 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
+                            <i class="fa-regular fa-copy"></i> Copy
+                        </button>
+                        <a id="pay-link" href="#" target="_blank" class="bg-gradient-to-r from-yellow-600 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-black py-3 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(234,179,8,0.3)]">
+                            <i class="fa-solid fa-bolt"></i> Pay Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-center text-white/20 text-xs mt-8">© 2026 Sok Dara</p>
+    </div>
+
+    <!-- Notification -->
+    <div id="toast" class="fixed top-10 left-1/2 -translate-x-1/2 glass border border-yellow-500/30 text-yellow-400 px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 transform -translate-y-32 transition-all duration-300 z-50">
+        <i class="fa-solid fa-check-circle"></i>
+        <span class="font-bold text-sm">លេខគណនីបានចម្លង!</span>
+    </div>
+
+    <script>
+        // --- Falling Angpao Logic ---
+        function createAngpao() {
+            const container = document.getElementById('angpao-container');
+            const angpao = document.createElement('div');
+            
+            // Random Icon: Angpao or Gold Coin or Lantern
+            const icons = ['🧧', '💰', '🏮'];
+            angpao.innerText = icons[Math.floor(Math.random() * icons.length)];
+            
+            angpao.classList.add('angpao');
+            
+            // Random Position & Speed
+            angpao.style.left = Math.random() * 100 + 'vw';
+            angpao.style.animationDuration = Math.random() * 3 + 4 + 's'; // 4s to 7s
+            angpao.style.opacity = Math.random();
+            angpao.style.fontSize = Math.random() * 15 + 15 + 'px'; // 15px to 30px
+            
+            container.appendChild(angpao);
+
+            // Remove after animation
+            setTimeout(() => {
+                angpao.remove();
+            }, 7000);
+        }
+
+        // Generate Angpao every 500ms
+        setInterval(createAngpao, 500);
+
+
+        // --- Banking Logic ---
+        const banks = {
+            aba: { num: "001 555 666", qr: "001555666", link: "https://link.aba.com.kh/pay" },
+            acleda: { num: "1122-3344-55", qr: "1122334455", link: "https://acledabank.com.kh" },
+            wing: { num: "012 999 888", qr: "012999888", link: "https://wingbank.com.kh" }
+        };
+
+        let currentBank = 'aba';
+
+        function setBank(id) {
+            currentBank = id;
+            
+            // Update Tabs
+            document.querySelectorAll('button[id^="tab-"]').forEach(btn => {
+                btn.className = "flex-1 py-3 rounded-xl text-sm font-bold transition-all text-white/40 hover:text-white";
+            });
+            document.getElementById(`tab-${id}`).className = "flex-1 py-3 rounded-xl text-sm font-bold transition-all text-white/40 hover:text-white tab-active";
+
+            // Update Content with animation reset
+            const content = document.getElementById('bank-content');
+            content.classList.remove('fade-in');
+            void content.offsetWidth; // Trigger reflow
+            content.classList.add('fade-in');
+
+            document.getElementById('acc-num').innerText = banks[id].num;
+            document.getElementById('pay-link').href = banks[id].link;
+            
+            // Custom Colored QR: Gold on Dark Background
+            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${banks[id].qr}&color=fcd34d&bgcolor=1a0505&margin=2`;
+            document.getElementById('qr-img').src = qrUrl;
+        }
+
+        function copyAcc() {
+            navigator.clipboard.writeText(banks[currentBank].num);
+            const toast = document.getElementById('toast');
+            toast.classList.remove('-translate-y-32');
+            setTimeout(() => toast.classList.add('-translate-y-32'), 2000);
+        }
+    </script>
+</body>
+</html>
+
+
