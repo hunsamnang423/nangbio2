@@ -180,8 +180,7 @@
                     
                     <!-- Profile Image (Edit Src Here) -->
                     <div class="relative p-1 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full">
-                        <img src="https://ui-avatars.com/api/?name=Hun+Samnang&background=18181b&color=fbbf24&size=256&bold=true" 
-                             class="w-24 h-24 rounded-full object-cover border-4 border-[#09090b]">
+                        <img src="my-profile.jpg" class="w-24 h-24 rounded-full object-cover border-4 border-[#09090b]">
                     </div>
                     
                     <!-- Status Badge -->
@@ -271,19 +270,25 @@
     <script>
         // --- DATA CONFIGURATION ---
         const banks = {
-            aba: {
-                name: "HUN SAMNANG",
-                usd: { number: "040 220 0030", raw: "040220030", qr: "" },
-                khr: { number: "040 220 0031", raw: "040220031", qr: "" },
-                link: "https://pay.ababank.com/oRF8/bjr6yndk"
-            },
-            wing: {
-                name: "HUN SAMNANG",
-                usd: { number: "103 158 094", raw: "103158094", qr: "" },
-                khr: { number: "103 158 094", raw: "103158094", qr: "" },
-                link: "https://wingmoney.app.link/FenLETPGC0b"
-            }
-        };
+    aba: {
+        name: "HUN SAMNANG",
+        // ដាក់រូប QR ABA ដុល្លារ នៅខាងក្រោមនេះ
+        usd: { number: "040 220 0030", raw: "000301400", qr: "aba-usd.jpg" }, 
+        
+        // ដាក់រូប QR ABA ខ្មែរ នៅខាងក្រោមនេះ
+        khr: { number: "040 220 0031", raw: "000301401", qr: "aba-khr.jpg" },
+        
+        link: "https://pay.ababank.com/oRF8/bjr6yndk"
+    },
+    wing: {
+        name: "HUN SAMNANG",
+        // ដាក់រូប QR Wing នៅខាងក្រោមនេះ
+        usd: { number: "103 158 094", raw: "103158094", qr: "wing-qr.jpg" },
+        khr: { number: "103 158 094", raw: "103158094", qr: "" }, // បើអត់ដាក់ វាបង្កើត QR ឲ្យអូតូ
+        link: "https://wingmoney.app.link/FenLETPGC0b"
+    }
+};
+
 
         let currentBank = 'aba';
         let currentCurrency = 'usd';
