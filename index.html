@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HUN SAMNANG - CNY 2026</title>
+    <title>HUN SAMNANG - CNY 2026 (GONG XI FA CAI)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Moul&display=swap" rel="stylesheet">
@@ -152,7 +152,7 @@
         <div class="relative mb-6">
             <div class="text-9xl shake-vertical drop-shadow-[0_0_35px_rgba(220,38,38,0.6)]">🧧</div>
             <div class="absolute -top-4 -right-6 text-4xl animate-pulse">✨</div>
-            <div class="absolute bottom-0 -left-6 text-4xl animate-pulse delay-75">🥺</div>
+            <div class="absolute bottom-0 -left-6 text-4xl animate-pulse delay-75">🐴</div>
         </div>
         
         <div class="text-center space-y-4 px-6 relative z-10">
@@ -178,19 +178,22 @@
                     <!-- Glow behind profile -->
                     <div class="absolute -inset-4 bg-gradient-to-tr from-yellow-500/40 to-red-600/40 rounded-full blur-xl opacity-70 animate-pulse"></div>
                     
-                    <!-- Profile Image (Edit Src Here) -->
+                    <!-- Profile Image (AUTO LINKED TO FOLDER) -->
                     <div class="relative p-1 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full">
-                        <img src="my-profile.jpg" class="w-24 h-24 rounded-full object-cover border-4 border-[#09090b]">
+                        <!-- ប្រើ onerror ដើម្បីដាក់រូប placeholder បើរូបមិនទាន់មាន -->
+                        <img id="user-profile" src="images/profile.jpg" 
+                             onerror="this.src='https://ui-avatars.com/api/?name=Hun+Samnang&background=18181b&color=fbbf24&size=256&bold=true'"
+                             class="w-24 h-24 rounded-full object-cover border-4 border-[#09090b]">
                     </div>
                     
-                    <!-- Status Badge -->
+                    <!-- Status Badge (HORSE) -->
                     <div class="absolute bottom-0 right-0 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full border-2 border-[#09090b] shadow-lg flex items-center gap-1">
-                        <i class="fa-solid fa-dragon text-yellow-300"></i> 2026
+                        <i class="fa-solid fa-horse text-yellow-300"></i> 2026
                     </div>
                 </div>
 
                 <h1 class="text-2xl font-bold mt-4 text-gradient-gold font-['Moul'] tracking-wide">HUN SAMNANG</h1>
-                <p class="text-[11px] text-white/40 uppercase tracking-[0.2em] mt-1 font-semibold">Gong Xi Fa Cai</p>
+                <p class="text-[11px] text-white/40 uppercase tracking-[0.2em] mt-1 font-semibold">Year of the Horse</p>
             </div>
 
             <!-- BANKING BODY -->
@@ -227,7 +230,11 @@
                         <div class="qr-frame group cursor-pointer">
                             <div class="corner c-tl"></div><div class="corner c-tr"></div>
                             <div class="corner c-bl"></div><div class="corner c-br"></div>
-                            <img id="qr-image" src="" class="w-36 h-36 rounded-lg bg-white p-1 object-contain">
+                            
+                            <!-- QR Image -->
+                            <img id="qr-image" src="" 
+                                 class="w-36 h-36 rounded-lg bg-white p-1 object-contain"
+                                 onerror="this.src='https://placehold.co/300x300/white/black?text=No+QR+Image'">
                         </div>
                     </div>
 
@@ -257,7 +264,7 @@
             </div>
             
             <div class="text-center pb-4">
-                <p class="text-[10px] text-white/20 font-mono">DESIGNED FOR CNY 2026</p>
+                <p class="text-[10px] text-white/20 font-mono">DESIGNED FOR CNY 2026 (HORSE)</p>
             </div>
         </div>
     </div>
@@ -270,25 +277,21 @@
     <script>
         // --- DATA CONFIGURATION ---
         const banks = {
-    aba: {
-        name: "HUN SAMNANG",
-        // ដាក់រូប QR ABA ដុល្លារ នៅខាងក្រោមនេះ
-        usd: { number: "040 220 0030", raw: "000301400", qr: "aba-usd.jpg" }, 
-        
-        // ដាក់រូប QR ABA ខ្មែរ នៅខាងក្រោមនេះ
-        khr: { number: "040 220 0031", raw: "000301401", qr: "aba-khr.jpg" },
-        
-        link: "https://pay.ababank.com/oRF8/bjr6yndk"
-    },
-    wing: {
-        name: "HUN SAMNANG",
-        // ដាក់រូប QR Wing នៅខាងក្រោមនេះ
-        usd: { number: "103 158 094", raw: "103158094", qr: "wing-qr.jpg" },
-        khr: { number: "103 158 094", raw: "103158094", qr: "" }, // បើអត់ដាក់ វាបង្កើត QR ឲ្យអូតូ
-        link: "https://wingmoney.app.link/FenLETPGC0b"
-    }
-};
-
+            aba: {
+                name: "HUN SAMNANG",
+                // ដាក់រូបក្នុង Folder images ឈ្មោះ aba.jpg
+                usd: { number: "040 220 0030", qr: "images/aba.jpg" }, 
+                khr: { number: "040 220 0031", qr: "images/aba.jpg" }, // ប្រើ QR តែមួយក៏បាន
+                link: "https://pay.ababank.com/oRF8/bjr6yndk"
+            },
+            wing: {
+                name: "HUN SAMNANG",
+                // ដាក់រូបក្នុង Folder images ឈ្មោះ wing.jpg
+                usd: { number: "103 158 094", qr: "images/wing.jpg" },
+                khr: { number: "103 158 094", qr: "images/wing.jpg" },
+                link: "https://wingmoney.app.link/FenLETPGC0b"
+            }
+        };
 
         let currentBank = 'aba';
         let currentCurrency = 'usd';
@@ -356,14 +359,9 @@
             document.getElementById('acc-number').innerText = data.number;
             document.getElementById('pay-btn').href = banks[currentBank].link;
             
-            // QR Gen
+            // QR Gen with Error Fallback (Shows default if image not found)
             const qrImg = document.getElementById('qr-image');
-            if(data.qr && data.qr !== "") {
-                qrImg.src = data.qr;
-            } else {
-                const raw = data.raw || data.number.replace(/\s/g,'');
-                qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${raw}&margin=10&bgcolor=fff`;
-            }
+            qrImg.src = data.qr;
         }
 
         function copyNumber() {
@@ -382,7 +380,7 @@
                 const c = document.getElementById('angpao-container');
                 const e = document.createElement('div');
                 e.className = 'angpao';
-                e.innerText = ['🧧','💰','✨'][Math.floor(Math.random()*3)];
+                e.innerText = ['🧧','💰','✨', '🐴'][Math.floor(Math.random()*4)];
                 e.style.left = Math.random()*100+'vw';
                 e.style.animationDuration = (Math.random()*3+4)+'s';
                 c.appendChild(e);
@@ -392,5 +390,4 @@
     </script>
 </body>
 </html>
-
 
